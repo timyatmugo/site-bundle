@@ -21,7 +21,7 @@ abstract class ConfigResolverBased extends MultipleValued
      * First element in the value array should be the name of the parameter and the
      * second should be the namespace.
      */
-    public function doMatch(mixed $value): bool
+    public function doMatch($value): bool
     {
         $config = $this->values[0];
         $namespace = $this->values[1] ?? null;

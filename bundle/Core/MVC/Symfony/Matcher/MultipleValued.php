@@ -21,7 +21,7 @@ abstract class MultipleValued
      *
      * @throws \InvalidArgumentException Should be thrown if $matchingConfig is not valid
      */
-    public function setMatchingConfig(mixed $matchingConfig): void
+    public function setMatchingConfig($matchingConfig): void
     {
         $this->values = !is_array($matchingConfig) ? [$matchingConfig] : $matchingConfig;
     }

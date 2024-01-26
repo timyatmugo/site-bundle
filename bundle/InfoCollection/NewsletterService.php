@@ -202,7 +202,7 @@ final class NewsletterService
     /**
      * @param array<string, mixed> $subscriberData
      */
-    private function addSubscriberToGroup(int $groupId, array $subscriberData): mixed
+    private function addSubscriberToGroup(int $groupId, array $subscriberData)
     {
         return $this->mailerLite->groups()->addSubscriber($groupId, $subscriberData);
     }
