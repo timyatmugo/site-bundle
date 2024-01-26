@@ -43,10 +43,6 @@ final class ContentByTopicHandler implements QueryTypeHandlerInterface
 
     private LoadService $loadService;
     private FindService $findService;
-    public LocationService $locationService;
-    public SectionHandler $sectionHandler;
-    public ObjectStateHandler $objectStateHandler;
-    public ContentProviderInterface $contentProvider;
 
     public function __construct(
         LoadService $loadService,
