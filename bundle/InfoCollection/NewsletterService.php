@@ -158,12 +158,29 @@ final class NewsletterService
      */
     private function extractSubscriberData(array $fields): array
     {
+        //nullsafe for php7
+        $email = $fields['sender_email'] ?? null;
+        $name = $fields['sender_first_name'] ?? null;
+        $last_name = $fields['sender_last_name'] ?? null;
+        $company = $fields['sender_company'] ?? null;
+        if ($email) {
+            $email = $email->value->email;
+        }
+        if ($name) {
+            $name = $name->value->text;
+        }
+        if ($last_name) {
+            $last_name = $last_name->value->text;
+        }
+        if ($company) {
+            $company = $company->value->text;
+        }
         return [
-            'email' => $fields['sender_email']?->value->email,
+            'email' => $email,
             'fields' => [
-                'name' => $fields['sender_first_name']?->value->text ?? '',
-                'last_name' => $fields['sender_last_name']?->value->text ?? '',
-                'company' => $fields['sender_company']?->value->text ?? '',
+                'name' => $name ?? '',
+                'last_name' => $last_name ?? '',
+                'company' => $company ?? '',
             ],
         ];
     }
