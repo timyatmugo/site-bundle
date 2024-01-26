@@ -17,7 +17,7 @@ class UserAccountKey
     /**
      * Get ID.
      */
-    public function getId(): int|string
+    public function getId()
     {
         return $this->id;
     }

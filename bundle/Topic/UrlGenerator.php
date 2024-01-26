@@ -48,7 +48,7 @@ final class UrlGenerator
      *
      * Otherwise, the tag itself is returned.
      */
-    private function getTopicValueObject(Tag $tag): Location|Tag
+    private function getTopicValueObject(Tag $tag)
     {
         $rootLocation = $this->loadService->loadLocation(
             $this->configResolver->getParameter('content.tree_root.location_id'),

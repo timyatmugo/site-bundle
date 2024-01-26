@@ -20,7 +20,7 @@ final class CheckRedirect extends Controller
     /**
      * Action for viewing content which has redirect fields.
      */
-    public function __invoke(ContentView $view): ContentView|Response
+    public function __invoke(ContentView $view)
     {
         $location = $view->getSiteLocation();
         if (!$location instanceof Location) {
