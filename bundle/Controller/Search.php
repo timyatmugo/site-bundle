@@ -13,7 +13,13 @@ use function trim;
 
 final class Search extends Controller
 {
-    public function __construct(private readonly SuggestionResolver $suggestionResolver) {}
+    private SuggestionResolver $suggestionResolver;
+    public function __construct(SuggestionResolver $suggestionResolver) 
+    {
+
+        $this->suggestionResolver = $suggestionResolver;
+
+    }
 
     /**
      * Action for displaying the results of full text search.

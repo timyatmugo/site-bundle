@@ -50,13 +50,19 @@ abstract class BaseMultiprocessCommand extends Command
     protected SymfonyStyle $symfonyStyle;
 
     protected ProgressBar $progressBar;
+    protected string $projectDir;
+    protected LoggerInterface $logger;
+    public string $phpPath;
 
     public function __construct(
-        protected readonly string $projectDir,
-        protected readonly LoggerInterface $logger = new NullLogger(),
-        protected ?string $phpPath = null,
+        string $projectDir,
+        ?LoggerInterface $logger = null,
+        ?string $phpPath = null
     ) {
         parent::__construct();
+        $this->projectDir = $projectDir;
+        $this->logger = $logger ?? new NullLogger();
+        $this->phpPath = $phpPath;
     }
 
     abstract protected function getTotalCount(): int;

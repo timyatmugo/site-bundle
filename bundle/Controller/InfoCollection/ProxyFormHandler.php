@@ -29,14 +29,29 @@ use function array_merge;
  */
 final class ProxyFormHandler extends Controller
 {
+    private RequestStack $requestStack;
+    private CaptchaService $captchaService;
+    private Handler $handler;
+    private EventDispatcherInterface $eventDispatcher;
+    private RefererResolver $refererResolver;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private readonly RequestStack $requestStack,
-        private readonly CaptchaService $captchaService,
-        private readonly Handler $handler,
-        private readonly EventDispatcherInterface $eventDispatcher,
-        private readonly RefererResolver $refererResolver,
-        private readonly LoggerInterface $logger = new NullLogger(),
-    ) {}
+        RequestStack $requestStack,
+        CaptchaService $captchaService,
+        Handler $handler,
+        EventDispatcherInterface $eventDispatcher,
+        RefererResolver $refererResolver,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->requestStack = $requestStack;
+        $this->captchaService = $captchaService;
+        $this->handler = $handler;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->refererResolver = $refererResolver;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     public function __invoke(ContentView $view): ContentView
     {
