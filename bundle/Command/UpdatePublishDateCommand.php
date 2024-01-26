@@ -137,16 +137,22 @@ final class UpdatePublishDateCommand extends Command
                         null,
                 );
 
-                $dateValueData = match (true) {
-                    $dateFieldValue instanceof DateAndTimeValue => $dateFieldValue->value,
-                    $dateFieldValue instanceof DateValue => $dateFieldValue->date,
-                    default => throw new RuntimeException(
-                        sprintf(
-                            'Field "%s" is of wrong type, ezdatetime or ezdate expected.',
-                            $fieldDefIdentifier,
-                        ),
-                    ),
-                };
+                switch (true) {
+                    case $dateFieldValue instanceof DateAndTimeValue: 
+                        $dateValueData = $dateFieldValue->value;
+                        break;
+                    case $dateFieldValue instanceof DateValue: 
+                        $dateValueData = $dateFieldValue->date;
+                        break;
+                    default:
+                        throw new RuntimeException(
+                            sprintf(
+                                'Field "%s" is of wrong type, ezdatetime or ezdate expected.',
+                                $fieldDefIdentifier,
+                            ),
+                        );
+                        break;
+                }
 
                 if (
                     $dateValueData instanceof DateTimeInterface
