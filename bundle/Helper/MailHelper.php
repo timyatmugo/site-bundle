@@ -91,7 +91,7 @@ final class MailHelper
      *
      * @throws \InvalidArgumentException If sender was not provided
      */
-    private function createSenderAddress(array|string|null $sender): Address
+    private function createSenderAddress($sender): Address
     {
         if (!in_array($sender, [null, '', []], true)) {
             if ((is_array($sender) && count($sender) === 1 && !isset($sender[0])) || is_string($sender)) {
