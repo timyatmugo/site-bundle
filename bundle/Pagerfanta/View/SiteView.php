@@ -45,7 +45,9 @@ class SiteView implements ViewInterface
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = []): string
     {
         $this->pagerfanta = $pagerfanta;
-        $this->routeGenerator = $routeGenerator(...);
+        //$this->routeGenerator = $routeGenerator(...);
+        //convert for php7
+        $this->routeGenerator = Closure::fromCallable($routeGenerator);
 
         $this->initializeProximity($options);
         $this->calculateStartAndEndPage();
