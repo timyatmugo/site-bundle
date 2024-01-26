@@ -24,7 +24,7 @@ final class ShortcutExtension implements ExtensionInterface
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
         private RequestStack $requestStack,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     public function matches(Location $location): bool

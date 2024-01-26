@@ -24,7 +24,7 @@ final class ChildrenBuilder
     public function __construct(
         private LoadService $loadService,
         private FilterService $filterService,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     public function buildChildItems(ItemInterface $item, Content $content): void

@@ -41,7 +41,7 @@ final class NewsletterService
         private TranslatorInterface $translator,
         private string $newsletterSenderEmail,
         private string $newsletterRecipientEmail,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     /**

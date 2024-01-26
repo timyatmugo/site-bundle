@@ -27,7 +27,7 @@ final class MailHelper
         private Environment $twig,
         private TranslatorInterface $translator,
         private ConfigResolverInterface $configResolver,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     /**

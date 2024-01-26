@@ -26,7 +26,7 @@ final class UrlGenerator
         private FindService $findService,
         private LoadService $loadService,
         private ConfigResolverInterface $configResolver,
-        private UrlGeneratorInterface $urlGenerator,
+        private UrlGeneratorInterface $urlGenerator
     ) {}
 
     /**

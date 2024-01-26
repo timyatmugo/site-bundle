@@ -21,7 +21,7 @@ final class PathHelper
     public function __construct(
         private LoadService $loadService,
         private ConfigResolverInterface $configResolver,
-        private UrlGeneratorInterface $urlGenerator,
+        private UrlGeneratorInterface $urlGenerator
     ) {}
 
     /**

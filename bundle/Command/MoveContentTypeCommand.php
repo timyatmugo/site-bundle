@@ -28,7 +28,7 @@ final class MoveContentTypeCommand extends Command
 
     public function __construct(
         private Repository $repository,
-        private ContentTypeService $contentTypeService,
+        private ContentTypeService $contentTypeService
     ) {
         // Parent constructor call is mandatory for commands registered as services
         parent::__construct();

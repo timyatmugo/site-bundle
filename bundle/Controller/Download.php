@@ -33,7 +33,7 @@ final class Download extends Controller
         private IOServiceInterface $ioImageService,
         private TranslatorInterface $translator,
         private EventDispatcherInterface $dispatcher,
-        private ConfigResolverInterface $configResolver,
+        private ConfigResolverInterface $configResolver
     ) {
         $this->inlineMimeTypes = $this->configResolver->getParameter('download.show_inline', 'ngsite');
     }

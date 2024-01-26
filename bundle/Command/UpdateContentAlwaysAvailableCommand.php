@@ -23,7 +23,7 @@ final class UpdateContentAlwaysAvailableCommand extends Command
 
     public function __construct(
         private Repository $repository,
-        private ContentService $contentService,
+        private ContentService $contentService
     ) {
         parent::__construct();
     }

@@ -22,7 +22,7 @@ final class LinkDirectDownload implements Converter
     public function __construct(
         private LoadService $loadService,
         private UrlGeneratorInterface $urlGenerator,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     /**

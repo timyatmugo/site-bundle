@@ -28,7 +28,7 @@ final class MenuItemExtension implements ExtensionInterface
         private RequestStack $requestStack,
         private ConfigResolverInterface $configResolver,
         private ChildrenBuilder $childrenBuilder,
-        private LoggerInterface $logger = new NullLogger(),
+        private LoggerInterface $logger = new NullLogger()
     ) {}
 
     public function matches(Location $location): bool

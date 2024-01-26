@@ -26,7 +26,7 @@ final class Activate extends Controller
         private EventDispatcherInterface $eventDispatcher,
         private UserAccountKeyRepository $accountKeyRepository,
         private Repository $repository,
-        private ConfigResolverInterface $configResolver,
+        private ConfigResolverInterface $configResolver
     ) {}
 
     /**

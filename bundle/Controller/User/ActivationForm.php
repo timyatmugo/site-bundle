@@ -21,7 +21,7 @@ final class ActivationForm extends Controller
     public function __construct(
         private UserService $userService,
         private EventDispatcherInterface $eventDispatcher,
-        private ConfigResolverInterface $configResolver,
+        private ConfigResolverInterface $configResolver
     ) {}
 
     /**

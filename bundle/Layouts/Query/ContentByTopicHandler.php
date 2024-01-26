@@ -47,7 +47,7 @@ final class ContentByTopicHandler implements QueryTypeHandlerInterface
         LocationService $locationService,
         SectionHandler $sectionHandler,
         ObjectStateHandler $objectStateHandler,
-        ContentProviderInterface $contentProvider,
+        ContentProviderInterface $contentProvider
     ) {
         $this->setLocationService($locationService);
         $this->setSectionHandler($sectionHandler);

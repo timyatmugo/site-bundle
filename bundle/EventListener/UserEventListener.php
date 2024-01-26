@@ -21,7 +21,7 @@ abstract class UserEventListener
         protected NgUserSettingRepository $ngUserSettingRepository,
         protected UserAccountKeyRepository $userAccountKeyRepository,
         protected LoadService $loadService,
-        protected Repository $repository,
+        protected Repository $repository
     ) {}
 
     /**

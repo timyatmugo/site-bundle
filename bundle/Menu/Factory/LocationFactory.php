@@ -23,7 +23,7 @@ final class LocationFactory implements FactoryInterface
     public function __construct(
         private EventDispatcherInterface $eventDispatcher,
         private ExtensionInterface $fallbackExtension,
-        private iterable $extensions = [],
+        private iterable $extensions = []
     ) {}
 
     public function createItem(string $name, array $options = []): ItemInterface

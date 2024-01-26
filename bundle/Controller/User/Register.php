@@ -29,7 +29,7 @@ final class Register extends Controller
         private ContentTypeService $contentTypeService,
         private EventDispatcherInterface $eventDispatcher,
         private Repository $repository,
-        private ConfigResolverInterface $configResolver,
+        private ConfigResolverInterface $configResolver
     ) {}
 
     /**

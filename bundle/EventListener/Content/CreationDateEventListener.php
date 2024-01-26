@@ -17,7 +17,7 @@ final class CreationDateEventListener implements EventSubscriberInterface
 {
     public function __construct(
         private ConfigResolverInterface $configResolver,
-        private ContentService $contentService,
+        private ContentService $contentService
     ) {}
 
     public static function getSubscribedEvents(): array

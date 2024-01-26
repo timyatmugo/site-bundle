@@ -15,7 +15,7 @@ final class GlobalVariable
     public function __construct(
         private Provider $namedObjectProvider,
         private PermissionService $permissionService,
-        private LoadService $loadService,
+        private LoadService $loadService
     ) {}
 
     public function getSiteInfoLocation(): Location
