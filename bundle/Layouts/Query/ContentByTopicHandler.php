@@ -58,10 +58,6 @@ final class ContentByTopicHandler implements QueryTypeHandlerInterface
     ) {
         $this->loadService = $loadService;
         $this->findService = $findService;
-        $this->locationService = $locationService;
-        $this->sectionHandler = $sectionHandler;
-        $this->objectStateHandler = $objectStateHandler;
-        $this->contentProvider = $contentProvider;
 
         $this->setLocationService($locationService);
         $this->setSectionHandler($sectionHandler);
