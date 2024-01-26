@@ -22,12 +22,22 @@ use function count;
 
 final class UrlGenerator
 {
+    private FindService $findService;
+    private LoadService $loadService;
+    private ConfigResolverInterface $configResolver;
+    private UrlGeneratorInterface $urlGenerator;
+
     public function __construct(
-        private FindService $findService,
-        private LoadService $loadService,
-        private ConfigResolverInterface $configResolver,
-        private UrlGeneratorInterface $urlGenerator
-    ) {}
+        FindService $findService,
+        LoadService $loadService,
+        ConfigResolverInterface $configResolver,
+        UrlGeneratorInterface $urlGenerator
+    ) {
+        $this->findService = $findService;
+        $this->loadService = $loadService;
+        $this->configResolver = $configResolver;
+        $this->urlGenerator = $urlGenerator;
+    }
 
     /**
      * Returns the path for the topic specified by provided tag.

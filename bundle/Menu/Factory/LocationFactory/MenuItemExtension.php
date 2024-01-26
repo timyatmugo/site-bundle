@@ -23,13 +23,26 @@ use function str_starts_with;
 
 final class MenuItemExtension implements ExtensionInterface
 {
+    private UrlGeneratorInterface $urlGenerator;
+    private RequestStack $requestStack;
+    private ConfigResolverInterface $configResolver;
+    private ChildrenBuilder $childrenBuilder;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private UrlGeneratorInterface $urlGenerator,
-        private RequestStack $requestStack,
-        private ConfigResolverInterface $configResolver,
-        private ChildrenBuilder $childrenBuilder,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        UrlGeneratorInterface $urlGenerator,
+        RequestStack $requestStack,
+        ConfigResolverInterface $configResolver,
+        ChildrenBuilder $childrenBuilder,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->urlGenerator = $urlGenerator;
+        $this->requestStack = $requestStack;
+        $this->configResolver = $configResolver;
+        $this->childrenBuilder = $childrenBuilder;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     public function matches(Location $location): bool
     {

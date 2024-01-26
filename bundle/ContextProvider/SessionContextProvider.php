@@ -10,7 +10,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class SessionContextProvider implements ContextProvider
 {
-    public function __construct(private SessionInterface $session) {}
+
+    private SessionInterface $session;
+
+    public function __construct(SessionInterface $session) 
+    {
+
+        $this->session = $session;
+    }
 
     /**
      * If the session is started, adds the session ID to user context. This allows

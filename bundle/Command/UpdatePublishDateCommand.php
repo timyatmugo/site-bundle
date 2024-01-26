@@ -28,10 +28,14 @@ use const PHP_EOL;
 
 final class UpdatePublishDateCommand extends Command
 {
-    public function __construct(private Repository $repository)
+    private Repository $repository;
+
+    public function __construct(Repository $repository)
     {
         // Parent constructor call is mandatory for commands registered as services
         parent::__construct();
+
+        $this->repository = $repository;
     }
 
     protected function configure(): void

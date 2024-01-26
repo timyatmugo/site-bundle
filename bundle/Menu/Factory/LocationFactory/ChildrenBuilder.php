@@ -21,11 +21,20 @@ use function sprintf;
 
 final class ChildrenBuilder
 {
+    private LoadService $loadService;
+    private FilterService $filterService;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private LoadService $loadService,
-        private FilterService $filterService,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        LoadService $loadService,
+        FilterService $filterService,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->loadService = $loadService;
+        $this->filterService = $filterService;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     public function buildChildItems(ItemInterface $item, Content $content): void
     {

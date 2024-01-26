@@ -25,13 +25,17 @@ final class MoveContentTypeCommand extends Command
     protected static $defaultDescription = 'Assigns content type(s) to a single content type group';
 
     private SymfonyStyle $style;
+    private Repository $repository;
+    private ContentTypeService $contentTypeServic;
 
     public function __construct(
-        private Repository $repository,
-        private ContentTypeService $contentTypeService
+        Repository $repository,
+        ContentTypeService $contentTypeService
     ) {
         // Parent constructor call is mandatory for commands registered as services
         parent::__construct();
+        $this->repository = $repository;
+        $this->contentTypeServic = $contentTypeService;
     }
 
     protected function configure(): void

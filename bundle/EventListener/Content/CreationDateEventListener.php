@@ -15,10 +15,17 @@ use function array_key_exists;
 
 final class CreationDateEventListener implements EventSubscriberInterface
 {
+    private ConfigResolverInterface $configResolver;
+    private ContentService $contentService;
+
     public function __construct(
-        private ConfigResolverInterface $configResolver,
-        private ContentService $contentService
-    ) {}
+        ConfigResolverInterface $configResolver,
+        ContentService $contentService
+    ) {
+
+        $this->configResolver = $configResolver;
+        $this->contentService = $contentService;
+    }
 
     public static function getSubscribedEvents(): array
     {

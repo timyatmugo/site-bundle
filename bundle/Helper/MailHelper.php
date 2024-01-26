@@ -22,13 +22,26 @@ use function is_string;
 
 final class MailHelper
 {
+    private MailerInterface $mailer;
+    private Environment $twig;
+    private TranslatorInterface $translator;
+    private ConfigResolverInterface $configResolver;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private MailerInterface $mailer,
-        private Environment $twig,
-        private TranslatorInterface $translator,
-        private ConfigResolverInterface $configResolver,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        MailerInterface $mailer,
+        Environment $twig,
+        TranslatorInterface $translator,
+        ConfigResolverInterface $configResolver,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->mailer = $mailer;
+        $this->twig = $twig;
+        $this->translator = $translator;
+        $this->configResolver = $configResolver;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     /**
      * Sends an mail.

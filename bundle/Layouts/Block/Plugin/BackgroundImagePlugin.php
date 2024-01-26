@@ -19,7 +19,12 @@ use Netgen\Layouts\Standard\Block\BlockDefinition\Handler\ListHandler;
 
 final class BackgroundImagePlugin extends Plugin
 {
-    public function __construct(private LoadService $loadService) {}
+    private LoadService $loadService;
+
+    public function __construct(LoadService $loadService) 
+    {
+        $this->loadService = $loadService;
+    }
 
     public static function getExtendedHandlers(): iterable
     {

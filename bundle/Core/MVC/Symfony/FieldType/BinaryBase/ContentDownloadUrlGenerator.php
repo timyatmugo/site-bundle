@@ -19,8 +19,12 @@ use Symfony\Component\Routing\RouterInterface;
 final class ContentDownloadUrlGenerator extends PathGenerator implements RouteAwarePathGenerator
 {
     private string $route = 'ngsite_download';
+    private RouterInterface $router;
 
-    public function __construct(private RouterInterface $router) {}
+    public function __construct(RouterInterface $router) 
+    {
+        $this->router = $router;
+    }
 
     public function getStoragePathForField(Field $field, VersionInfo $versionInfo): string
     {

@@ -41,14 +41,28 @@ final class ContentByTopicHandler implements QueryTypeHandlerInterface
     use Traits\SectionFilterTrait;
     use Traits\SortTrait;
 
+    private LoadService $loadService;
+    private FindService $findService;
+    public LocationService $locationService;
+    public SectionHandler $sectionHandler;
+    public ObjectStateHandler $objectStateHandler;
+    public ContentProviderInterface $contentProvider;
+
     public function __construct(
-        private LoadService $loadService,
-        private FindService $findService,
+        LoadService $loadService,
+        FindService $findService,
         LocationService $locationService,
         SectionHandler $sectionHandler,
         ObjectStateHandler $objectStateHandler,
         ContentProviderInterface $contentProvider
     ) {
+        $this->loadService = $loadService;
+        $this->findService = $findService;
+        $this->locationService = $locationService;
+        $this->sectionHandler = $sectionHandler;
+        $this->objectStateHandler = $objectStateHandler;
+        $this->contentProvider = $contentProvider;
+
         $this->setLocationService($locationService);
         $this->setSectionHandler($sectionHandler);
         $this->setObjectStateHandler($objectStateHandler);

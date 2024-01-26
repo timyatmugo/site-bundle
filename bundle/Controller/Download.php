@@ -26,16 +26,28 @@ final class Download extends Controller
      * @var string[]
      */
     private array $inlineMimeTypes;
+    private Site $site;
+    private IOServiceInterface $ioFileService;
+    private IOServiceInterface $ioImageService;
+    private TranslatorInterface $translator;
+    private EventDispatcherInterface $dispatcher;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(
-        private Site $site,
-        private IOServiceInterface $ioFileService,
-        private IOServiceInterface $ioImageService,
-        private TranslatorInterface $translator,
-        private EventDispatcherInterface $dispatcher,
-        private ConfigResolverInterface $configResolver
+        Site $site,
+        IOServiceInterface $ioFileService,
+        IOServiceInterface $ioImageService,
+        TranslatorInterface $translator,
+        EventDispatcherInterface $dispatcher,
+        ConfigResolverInterface $configResolver
     ) {
         $this->inlineMimeTypes = $this->configResolver->getParameter('download.show_inline', 'ngsite');
+        $this->site = $site;
+        $this->ioFileService = $ioFileService;
+        $this->ioImageService = $ioImageService;
+        $this->translator = $translator;
+        $this->dispatcher = $dispatcher;
+        $this->configResolver = $configResolver;
     }
 
     /**

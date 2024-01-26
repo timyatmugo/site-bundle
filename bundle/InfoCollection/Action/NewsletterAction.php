@@ -11,8 +11,12 @@ use Netgen\InformationCollection\API\Value\Event\InformationCollected;
 final class NewsletterAction implements ActionInterface
 {
     public static string $defaultName = 'newsletter';
+    private NewsletterService $newsletterService;
 
-    public function __construct(private NewsletterService $newsletterService) {}
+    public function __construct(NewsletterService $newsletterService) 
+    {
+        $this->newsletterService = $newsletterService;
+    }
 
     public function act(InformationCollected $event): void
     {

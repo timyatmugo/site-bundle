@@ -33,16 +33,32 @@ final class NewsletterService
     public const PREVIOUS_UNCONFIRMED = 'unconfirmed';
 
     public const UNSUBSCRIBED = 'unsubscribed';
+    private MailerInterface $mailer;
+    private MailerLite $mailerLite;
+    private string $mailerLiteApiKey;
+    private TranslatorInterface $translator;
+    private string $newsletterSenderEmail;
+    private string $newsletterRecipientEmail;
+    private LoggerInterface $logger = new NullLogger();
 
     public function __construct(
-        private MailerInterface $mailer,
-        private MailerLite $mailerLite,
-        private string $mailerLiteApiKey,
-        private TranslatorInterface $translator,
-        private string $newsletterSenderEmail,
-        private string $newsletterRecipientEmail,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        MailerInterface $mailer,
+        MailerLite $mailerLite,
+        string $mailerLiteApiKey,
+        TranslatorInterface $translator,
+        string $newsletterSenderEmail,
+        string $newsletterRecipientEmail,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->mailer = $mailer;
+        $this->mailerLite = $mailerLite;
+        $this->mailerLiteApiKey = $mailerLiteApiKey;
+        $this->translator = $translator;
+        $this->newsletterSenderEmail = $newsletterRecipientEmail;
+        $this->newsletterRecipientEmail = $newsletterSenderEmail;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     /**
      * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fields

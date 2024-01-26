@@ -13,11 +13,17 @@ use function array_flip;
 
 final class VerticalWhitespacePlugin extends Plugin
 {
+    private array $top;
+    private array $bottom;
     /**
      * @param array<string, string> $top
      * @param array<string, string> $bottom
      */
-    public function __construct(private array $top, private array $bottom) {}
+    public function __construct(array $top, array $bottom) 
+    {
+        $this->top = $top;
+        $this->bottom = $bottom;
+    }
 
     public static function getExtendedHandlers(): iterable
     {

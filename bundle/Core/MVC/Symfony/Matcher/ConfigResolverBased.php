@@ -11,7 +11,13 @@ use function is_array;
 
 abstract class ConfigResolverBased extends MultipleValued
 {
-    public function __construct(private ConfigResolverInterface $configResolver) {}
+    private ConfigResolverInterface $configResolver;
+
+    public function __construct(ConfigResolverInterface $configResolver) 
+    {
+
+        $this->configResolver = $configResolver;
+    }
 
     /**
      * Performs the match against the provided value.

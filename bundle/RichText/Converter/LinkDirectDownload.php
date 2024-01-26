@@ -19,11 +19,19 @@ use function preg_match;
 
 final class LinkDirectDownload implements Converter
 {
+    private LoadService $loadService;
+    private UrlGeneratorInterface $urlGenerator;
+    private LoggerInterface $logger;
+
     public function __construct(
-        private LoadService $loadService,
-        private UrlGeneratorInterface $urlGenerator,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        LoadService $loadService,
+        UrlGeneratorInterface $urlGenerator,
+        LoggerInterface $logger = null
+    ) {
+        $this->loadService = $loadService;
+        $this->urlGenerator = $urlGenerator;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     /**
      * Converts internal links (ezcontent:// and ezlocation://) to URLs.

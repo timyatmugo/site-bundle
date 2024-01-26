@@ -9,7 +9,18 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 final class DownloadEvent extends Event
 {
-    public function __construct(private int $contentId, private int $fieldId, private int $versionNo, private BinaryStreamResponse $response) {}
+    private int $contentId;
+    private int $fieldId;
+    private int $versionNo;
+    private BinaryStreamResponse $response;
+
+    public function __construct(int $contentId, int $fieldId, int $versionNo, BinaryStreamResponse $response) 
+    {
+        $this->contentId = $contentId;
+        $this->fieldId = $fieldId;
+        $this->versionNo = $versionNo;
+        $this->response = $response;
+    }
 
     /**
      * Get field ID.

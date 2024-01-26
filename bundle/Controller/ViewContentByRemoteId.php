@@ -9,7 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ViewContentByRemoteId extends Controller
 {
-    public function __construct(private LoadService $loadService) {}
+
+    private LoadService $loadService;
+
+    public function __construct(LoadService $loadService) 
+    {
+        $this->loadService = $loadService;
+    }
 
     public function __invoke(string $remoteId): Response
     {

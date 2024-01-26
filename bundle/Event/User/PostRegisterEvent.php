@@ -8,7 +8,12 @@ use Ibexa\Contracts\Core\Repository\Values\User\User;
 
 final class PostRegisterEvent extends UserEvent
 {
-    public function __construct(private User $user) {}
+    private User $user;
+
+    public function __construct(User $user) 
+    {
+        $this->user = $user;
+    }
 
     public function getUser(): User
     {

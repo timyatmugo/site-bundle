@@ -19,7 +19,14 @@ use function trim;
 
 final class RedirectHelper
 {
-    public function __construct(private UrlGeneratorInterface $urlGenerator, private Site $site) {}
+    private UrlGeneratorInterface $urlGenerator;
+    private Site $site;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, Site $site) 
+    {
+        $this->urlGenerator = $urlGenerator;
+        $this->site = $site;
+    }
 
     /**
      * Checks if content on give location has internal or external

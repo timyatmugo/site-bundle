@@ -8,7 +8,14 @@ use Ibexa\Contracts\Core\Repository\Values\User\User;
 
 final class ActivationRequestEvent extends UserEvent
 {
-    public function __construct(private string $email, private ?User $user = null) {}
+    private string $email;
+    private ?User $user;
+
+    public function __construct(string $email, ?User $user = null) 
+    {
+        $this->email = $email;
+        $this->user = $user;
+    }
 
     public function getEmail(): string
     {

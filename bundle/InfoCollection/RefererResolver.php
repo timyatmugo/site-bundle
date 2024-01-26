@@ -11,7 +11,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class RefererResolver
 {
-    public function __construct(private RequestStack $requestStack, private UrlGeneratorInterface $urlGenerator) {}
+    private RequestStack $requestStack; 
+    private UrlGeneratorInterface $urlGenerator;
+
+    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $urlGenerator) 
+    {
+        $this->requestStack = $requestStack;
+        $this->urlGenerator = $urlGenerator;
+    }
 
     public function getReferer(?int $refererLocationId = null): string
     {

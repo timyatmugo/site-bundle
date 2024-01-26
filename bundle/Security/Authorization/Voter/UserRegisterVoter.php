@@ -16,7 +16,12 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
  */
 final class UserRegisterVoter implements VoterInterface
 {
-    public function __construct(private PermissionResolver $permissionResolver, private RequestStack $requestStack) {}
+    private PermissionResolver $permissionResolver;
+    private RequestStack $requestStack;
+    public function __construct(PermissionResolver $permissionResolver, RequestStack $requestStack) {
+        $this->permissionResolver = $permissionResolver;
+        $this->requestStack = $requestStack;
+    }
 
     public function vote(TokenInterface $token, $subject, array $attributes): int
     {

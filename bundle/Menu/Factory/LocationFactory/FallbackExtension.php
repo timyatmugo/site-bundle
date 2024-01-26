@@ -11,7 +11,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class FallbackExtension implements ExtensionInterface
 {
-    public function __construct(private UrlGeneratorInterface $urlGenerator) {}
+    private UrlGeneratorInterface $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator) 
+    {
+        $this->urlGenerator = $urlGenerator;
+    }
 
     public function matches(Location $location): bool
     {

@@ -24,13 +24,25 @@ use function count;
 
 final class Register extends Controller
 {
+    private UserService $userService;
+    private ContentTypeService $contentTypeService;
+    private EventDispatcherInterface $eventDispatcher;
+    private Repository $repository;
+    private ConfigResolverInterface $configResolver;
+
     public function __construct(
         private UserService $userService,
         private ContentTypeService $contentTypeService,
         private EventDispatcherInterface $eventDispatcher,
         private Repository $repository,
         private ConfigResolverInterface $configResolver
-    ) {}
+    ) {
+        $this->userService = $userService;
+        $this->contentTypeService = $contentTypeService;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->repository = $repository;
+        $this->configResolver = $configResolver;
+    }
 
     /**
      * Registers user on the site.

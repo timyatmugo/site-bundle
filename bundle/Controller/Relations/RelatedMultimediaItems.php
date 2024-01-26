@@ -12,7 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class RelatedMultimediaItems extends Controller
 {
-    public function __construct(private LocationRelationResolverInterface $multimediaResolver) {}
+    private LocationRelationResolverInterface $multimediaResolver;
+
+    public function __construct(LocationRelationResolverInterface $multimediaResolver) 
+    {
+        $this->multimediaResolver = $multimediaResolver;
+    }
 
     /**
      * Action for rendering related multimedia items

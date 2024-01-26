@@ -26,13 +26,26 @@ use function time;
 
 final class ResetPassword extends Controller
 {
+    private UserService $userService;
+    private EventDispatcherInterface $eventDispatcher;
+    private UserAccountKeyRepository $accountKeyRepository;
+    private Repository $repository;
+    private ConfigResolverInterface $configResolver;
+
     public function __construct(
         private UserService $userService,
         private EventDispatcherInterface $eventDispatcher,
         private UserAccountKeyRepository $accountKeyRepository,
         private Repository $repository,
         private ConfigResolverInterface $configResolver
-    ) {}
+    ) 
+    {
+        $this->userService = $userService;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->accountKeyRepository = $accountKeyRepository;
+        $this->repository = $repository;
+        $this->configResolver = $configResolver;
+    }
 
     /**
      * Displays and validates the reset password form.

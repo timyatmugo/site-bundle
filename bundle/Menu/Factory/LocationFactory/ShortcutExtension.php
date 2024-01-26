@@ -21,11 +21,20 @@ use function str_starts_with;
 
 final class ShortcutExtension implements ExtensionInterface
 {
+    private UrlGeneratorInterface $urlGenerator;
+    private RequestStack $requestStack;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private UrlGeneratorInterface $urlGenerator,
-        private RequestStack $requestStack,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        UrlGeneratorInterface $urlGenerator,
+        RequestStack $requestStack,
+        LoggerInterface $logger = null
+    ) {
+
+        $this->urlGenerator = $urlGenerator;
+        $this->requestStack = $requestStack;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     public function matches(Location $location): bool
     {

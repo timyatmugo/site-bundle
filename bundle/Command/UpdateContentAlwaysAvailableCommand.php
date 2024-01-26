@@ -21,11 +21,16 @@ final class UpdateContentAlwaysAvailableCommand extends Command
 
     private SymfonyStyle $style;
 
+    private Repository $repository;
+    private ContentService $contentService;
+
     public function __construct(
-        private Repository $repository,
-        private ContentService $contentService
+        Repository $repository,
+        ContentService $contentService
     ) {
         parent::__construct();
+        $this->repository = $repository;
+        $this->contentService = $contentService;
     }
 
     protected function configure(): void

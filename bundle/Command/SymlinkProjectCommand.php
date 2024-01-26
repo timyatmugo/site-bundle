@@ -37,11 +37,15 @@ final class SymlinkProjectCommand extends Command
         'offline_cro.html',
         'offline_eng.html',
     ];
+    private KernelInterface $kernel;
+    private Filesystem $fileSystem;
 
-    public function __construct(private KernelInterface $kernel, private Filesystem $fileSystem)
+    public function __construct(KernelInterface $kernel, Filesystem $fileSystem)
     {
         // Parent constructor call is mandatory for commands registered as services
         parent::__construct();
+        $this->kernel = $kernel;
+        $this->fileSystem = $fileSystem;
     }
 
     protected function configure(): void

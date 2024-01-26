@@ -15,13 +15,17 @@ use function array_flip;
 
 final class BackgroundColorPlugin extends Plugin
 {
+    private array $colors;
     /**
      * The list of colors available. Keys should be identifiers, while values
      * should be human readable names of the colors.
      *
      * @param array<string, string> $colors
      */
-    public function __construct(private array $colors) {}
+    public function __construct(array $colors) 
+    {
+        $this->colors = $colors;
+    }
 
     public static function getExtendedHandlers(): iterable
     {

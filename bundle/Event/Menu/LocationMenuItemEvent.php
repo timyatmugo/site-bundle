@@ -13,7 +13,14 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 final class LocationMenuItemEvent extends Event
 {
-    public function __construct(private ItemInterface $item, private Location $location) {}
+    private ItemInterface $item;
+    private Location $location;
+
+    public function __construct(ItemInterface $item, Location $location) 
+    {
+        $this->item = $item;
+        $this->location = $location;
+    }
 
     /**
      * Returns the item which was built.

@@ -17,12 +17,24 @@ use function sprintf;
 
 final class RelationListMenuBuilder
 {
+    private FactoryInterface $factory;
+    private LoadService $loadService;
+    private Provider $namedObjectProvider;
+    private LoggerInterface $logger = new NullLogger();
+
     public function __construct(
-        private FactoryInterface $factory,
-        private LoadService $loadService,
-        private Provider $namedObjectProvider,
-        private LoggerInterface $logger = new NullLogger()
-    ) {}
+        FactoryInterface $factory,
+        LoadService $loadService,
+        Provider $namedObjectProvider,
+        LoggerInterface $logger = null 
+    ) 
+    {
+
+        $this->factory = $factory;
+        $this->loadService = $loadService;
+        $this->namedObjectProvider = $namedObjectProvider;
+        $this->logger = $logger ?? new NullLogger();
+    }
 
     /**
      * Creates the KNP menu from provided content and field identifier.

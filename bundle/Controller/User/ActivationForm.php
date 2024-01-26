@@ -18,11 +18,20 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final class ActivationForm extends Controller
 {
+    private UserService $userService;
+    private EventDispatcherInterface $eventDispatcher;
+    private ConfigResolverInterface $configResolver;
+
     public function __construct(
-        private UserService $userService,
-        private EventDispatcherInterface $eventDispatcher,
-        private ConfigResolverInterface $configResolver
-    ) {}
+        UserService $userService,
+        EventDispatcherInterface $eventDispatcher,
+        ConfigResolverInterface $configResolver
+    ) {
+
+        $this->userService = $userService;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->configResolver = $configResolver;
+    }
 
     /**
      * Displays and validates the form for sending an activation mail.

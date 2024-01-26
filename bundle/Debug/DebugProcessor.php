@@ -20,13 +20,20 @@ use function is_callable;
  */
 final class DebugProcessor implements DebugLoggerInterface
 {
+
+    private DebugLoggerInterface $innerProcessor;
+    private array $excludedChannels;
     /**
      * @param string[] $excludedChannels
      */
     public function __construct(
-        private DebugLoggerInterface $innerProcessor,
-        private array $excludedChannels = ['event', 'doctrine']
-    ) {}
+        DebugLoggerInterface $innerProcessor,
+        array $excludedChannels = ['event', 'doctrine']
+    ) 
+    {
+        $this->innerProcessor = $innerProcessor;
+        $this->excludedChannels = $excludedChannels;
+    }
 
     /**
      * @param array<string, mixed> $record

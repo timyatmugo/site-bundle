@@ -17,6 +17,9 @@ use function md5;
 
 final class LocationFactory implements FactoryInterface
 {
+    private EventDispatcherInterface $eventDispatcher;
+    private ExtensionInterface $fallbackExtension;
+    private iterable $extensions;
     /**
      * @param \Netgen\Bundle\SiteBundle\Menu\Factory\LocationFactory\ExtensionInterface[] $extensions
      */
@@ -24,7 +27,12 @@ final class LocationFactory implements FactoryInterface
         private EventDispatcherInterface $eventDispatcher,
         private ExtensionInterface $fallbackExtension,
         private iterable $extensions = []
-    ) {}
+    ) {
+
+        $this->eventDispatcher = $eventDispatcher;
+        $this->fallbackExtension = $fallbackExtension;
+        $this->extensions = $extensions;
+    }
 
     public function createItem(string $name, array $options = []): ItemInterface
     {
