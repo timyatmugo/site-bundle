@@ -34,7 +34,7 @@ final class ProxyFormHandler extends Controller
     private Handler $handler;
     private EventDispatcherInterface $eventDispatcher;
     private RefererResolver $refererResolver;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(
         RequestStack $requestStack,

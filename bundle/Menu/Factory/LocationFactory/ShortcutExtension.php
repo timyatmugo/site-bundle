@@ -23,7 +23,7 @@ final class ShortcutExtension implements ExtensionInterface
 {
     private UrlGeneratorInterface $urlGenerator;
     private RequestStack $requestStack;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(
         UrlGeneratorInterface $urlGenerator,

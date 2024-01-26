@@ -23,7 +23,7 @@ final class ChildrenBuilder
 {
     private LoadService $loadService;
     private FilterService $filterService;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(
         LoadService $loadService,

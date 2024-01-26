@@ -27,7 +27,7 @@ final class MenuItemExtension implements ExtensionInterface
     private RequestStack $requestStack;
     private ConfigResolverInterface $configResolver;
     private ChildrenBuilder $childrenBuilder;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(
         UrlGeneratorInterface $urlGenerator,

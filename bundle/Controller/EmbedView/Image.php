@@ -22,7 +22,7 @@ use function trim;
 final class Image extends Controller
 {
     private Site $site;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(Site $site, LoggerInterface $logger = null) {
         $this->site = $site;

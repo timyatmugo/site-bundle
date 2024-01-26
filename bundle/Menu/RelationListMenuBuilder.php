@@ -20,7 +20,7 @@ final class RelationListMenuBuilder
     private FactoryInterface $factory;
     private LoadService $loadService;
     private Provider $namedObjectProvider;
-    private LoggerInterface $logger = new NullLogger();
+    private LoggerInterface $logger;
 
     public function __construct(
         FactoryInterface $factory,
