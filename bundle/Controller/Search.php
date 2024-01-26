@@ -55,7 +55,7 @@ final class Search extends Controller
                 $query,
                 $searchAdapter->getSuggestion(),
             );
-        } catch (NotFoundException) {
+        } catch (NotFoundException $e) {
             $searchSuggestion = null;
         }
 

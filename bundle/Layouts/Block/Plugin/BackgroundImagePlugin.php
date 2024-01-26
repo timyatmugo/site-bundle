@@ -72,7 +72,7 @@ final class BackgroundImagePlugin extends Plugin
             $params['background_image:image_content'] = $this->loadService->loadContent(
                 $block->getParameter('background_image:image')->getValue(),
             );
-        } catch (NotFoundException|TranslationNotMatchedException|UnauthorizedException) {
+        } catch (NotFoundException|TranslationNotMatchedException|UnauthorizedException $e) {
             // Do nothing
         }
     }

@@ -45,7 +45,7 @@ final class HoneypotEventListener implements EventSubscriberInterface
         try {
             /** @var \Symfony\Component\Form\FormInterface $form */
             $form = $event->getAdditionalParameter('form');
-        } catch (MissingAdditionalParameterException) {
+        } catch (MissingAdditionalParameterException $e) {
             return;
         }
 

@@ -123,7 +123,7 @@ final class MoveContentTypeCommand extends Command
                     $this->contentTypeService->assignContentTypeGroup($contentType, $newContentTypeGroup);
                 },
             );
-        } catch (InvalidArgumentException) {
+        } catch (InvalidArgumentException $e) {
             // Content type is already assigned to the given content type group, do nothing
         }
 

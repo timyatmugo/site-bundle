@@ -73,7 +73,7 @@ final class ResetPassword extends Controller
 
         try {
             $user = $this->userService->loadUser($accountKey->getUserId());
-        } catch (NotFoundException) {
+        } catch (NotFoundException $e) {
             throw $this->createNotFoundException();
         }
 

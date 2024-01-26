@@ -77,7 +77,7 @@ final class PathHelper
 
             try {
                 $location = $this->loadService->loadLocation($pathItem);
-            } catch (UnauthorizedException) {
+            } catch (UnauthorizedException $e) {
                 return [];
             }
 

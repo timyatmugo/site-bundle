@@ -78,7 +78,7 @@ final class UpdatePublishDateCommand extends Command
 
         try {
             $contentType = $this->repository->getContentTypeService()->loadContentTypeByIdentifier($contentTypeIdentifier);
-        } catch (NotFoundException) {
+        } catch (NotFoundException $e) {
             throw new RuntimeException("Content type '" . $contentTypeIdentifier . "' does not exist");
         }
 

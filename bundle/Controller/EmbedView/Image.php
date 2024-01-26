@@ -47,11 +47,11 @@ final class Image extends Controller
                 try {
                     $location = $this->site->getLoadService()->loadLocation($locationId);
                     $content = $location->content;
-                } catch (NotFoundException) {
+                } catch (NotFoundException $e) {
                     $targetLink = null;
 
                     $this->logger->error(sprintf('Tried to generate link to non existing location #%s', $locationId));
-                } catch (UnauthorizedException) {
+                } catch (UnauthorizedException $e) {
                     $targetLink = null;
 
                     $this->logger->error(sprintf('Tried to generate link to location #%s without read rights', $locationId));
@@ -61,11 +61,11 @@ final class Image extends Controller
 
                 try {
                     $content = $this->site->getLoadService()->loadContent($linkedContentId);
-                } catch (NotFoundException) {
+                } catch (NotFoundException $e) {
                     $targetLink = null;
 
                     $this->logger->error(sprintf('Tried to generate link to non existing content #%s', $linkedContentId));
-                } catch (UnauthorizedException) {
+                } catch (UnauthorizedException $e) {
                     $targetLink = null;
 
                     $this->logger->error(sprintf('Tried to generate link to content #%s without read rights', $linkedContentId));

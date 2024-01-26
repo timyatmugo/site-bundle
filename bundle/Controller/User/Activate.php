@@ -68,7 +68,7 @@ final class Activate extends Controller
 
         try {
             $user = $this->userService->loadUser($accountKey->getUserId());
-        } catch (NotFoundException) {
+        } catch (NotFoundException $e) {
             throw $this->createNotFoundException();
         }
 

@@ -81,14 +81,14 @@ final class LinkDirectDownload implements Converter
             if ('ezcontent://' === $scheme) {
                 try {
                     $content = $this->loadService->loadContent((int) $id);
-                } catch (APINotFoundException) {
+                } catch (APINotFoundException $e) {
                     $this->logger->warning(
                         'While generating links for richtext, could not locate ' .
                         'Content object with ID ' . $id,
                     );
 
                     continue;
-                } catch (APIUnauthorizedException) {
+                } catch (APIUnauthorizedException $e) {
                     $this->logger->notice(
                         'While generating links for richtext, unauthorized to load ' .
                         'Content object with ID ' . $id,
@@ -102,14 +102,14 @@ final class LinkDirectDownload implements Converter
                 try {
                     $location = $this->loadService->loadLocation((int) $id);
                     $content = $location->content;
-                } catch (APINotFoundException) {
+                } catch (APINotFoundException $e) {
                     $this->logger->warning(
                         'While generating links for richtext, could not locate ' .
                         'Location with ID ' . $id,
                     );
 
                     continue;
-                } catch (APIUnauthorizedException) {
+                } catch (APIUnauthorizedException $e) {
                     $this->logger->notice(
                         'While generating links for richtext, unauthorized to load ' .
                         'Location with ID ' . $id,

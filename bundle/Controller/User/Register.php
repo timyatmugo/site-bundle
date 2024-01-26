@@ -111,7 +111,7 @@ final class Register extends Controller
                     'error' => 'username_taken',
                 ],
             );
-        } catch (NotFoundException) {
+        } catch (NotFoundException $e) {
             // do nothing
         }
 
