@@ -24,9 +24,9 @@ final class LocationFactory implements FactoryInterface
      * @param \Netgen\Bundle\SiteBundle\Menu\Factory\LocationFactory\ExtensionInterface[] $extensions
      */
     public function __construct(
-        private EventDispatcherInterface $eventDispatcher,
-        private ExtensionInterface $fallbackExtension,
-        private iterable $extensions = []
+        EventDispatcherInterface $eventDispatcher,
+        ExtensionInterface $fallbackExtension,
+        iterable $extensions = []
     ) {
 
         $this->eventDispatcher = $eventDispatcher;

@@ -33,11 +33,11 @@ final class ResetPassword extends Controller
     private ConfigResolverInterface $configResolver;
 
     public function __construct(
-        private UserService $userService,
-        private EventDispatcherInterface $eventDispatcher,
-        private UserAccountKeyRepository $accountKeyRepository,
-        private Repository $repository,
-        private ConfigResolverInterface $configResolver
+        UserService $userService,
+        EventDispatcherInterface $eventDispatcher,
+        UserAccountKeyRepository $accountKeyRepository,
+        Repository $repository,
+        ConfigResolverInterface $configResolver
     ) 
     {
         $this->userService = $userService;

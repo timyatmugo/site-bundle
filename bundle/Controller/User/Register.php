@@ -31,11 +31,11 @@ final class Register extends Controller
     private ConfigResolverInterface $configResolver;
 
     public function __construct(
-        private UserService $userService,
-        private ContentTypeService $contentTypeService,
-        private EventDispatcherInterface $eventDispatcher,
-        private Repository $repository,
-        private ConfigResolverInterface $configResolver
+        UserService $userService,
+        ContentTypeService $contentTypeService,
+        EventDispatcherInterface $eventDispatcher,
+        Repository $repository,
+        ConfigResolverInterface $configResolver
     ) {
         $this->userService = $userService;
         $this->contentTypeService = $contentTypeService;
