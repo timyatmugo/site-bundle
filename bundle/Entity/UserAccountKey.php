@@ -6,7 +6,7 @@ namespace Netgen\Bundle\SiteBundle\Entity;
 
 class UserAccountKey
 {
-    private int|string $id;
+    private $id;
 
     private string $hashKey;
 
