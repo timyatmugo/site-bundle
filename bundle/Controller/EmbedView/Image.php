@@ -16,7 +16,6 @@ use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use function in_array;
 use function mb_substr;
 use function sprintf;
-use function str_starts_with;
 use function trim;
 
 final class Image extends Controller
@@ -41,7 +40,8 @@ final class Image extends Controller
             $location = null;
             $content = null;
 
-            if (str_starts_with($targetLink, 'ezlocation://')) {
+            //php7 compatibility fix - use strpos() to replace str_starts_with()
+            if (strpos($targetLink, 'ezlocation://') === 0) {
                 $locationId = (int) mb_substr($targetLink, 9);
 
                 try {
@@ -56,7 +56,8 @@ final class Image extends Controller
 
                     $this->logger->error(sprintf('Tried to generate link to location #%s without read rights', $locationId));
                 }
-            } elseif (str_starts_with($targetLink, 'ezcontent://')) {
+            } elseif (strpos($targetLink, 'ezcontent://') === 0) {
+                //php7 compatibility fix - use strpos() to replace str_starts_with()
                 $linkedContentId = (int) mb_substr($targetLink, 11);
 
                 try {
@@ -96,9 +97,11 @@ final class Image extends Controller
 
             if ($directDownloadLink !== null) {
                 $targetLink = $directDownloadLink;
-            } elseif (str_starts_with($targetLink ?? '', 'ezlocation://')) {
+            } elseif (strpos($targetLink ?? '', 'ezlocation://') === 0) {
+                //php7 compatibility fix - use strpos() to replace str_starts_with()
                 $targetLink = $this->generateUrl('', [RouteObjectInterface::ROUTE_OBJECT => $location]);
-            } elseif (str_starts_with($targetLink ?? '', 'ezcontent://')) {
+            } elseif (strpos($targetLink ?? '', 'ezcontent://') === 0) {
+                //php7 compatibility fix - use strpos() to replace str_starts_with()
                 $targetLink = $this->generateUrl('', [RouteObjectInterface::ROUTE_OBJECT => $content]);
             }
         }

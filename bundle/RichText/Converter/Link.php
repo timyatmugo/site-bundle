@@ -25,14 +25,26 @@ use function sprintf;
 final class Link implements Converter
 {
     private const DOWNLOAD_LINK_INLINE = 1;
+    private Repository $repository;
+    private LoadService $loadService;
+    private RouterInterface $router;
+    private ConfigResolverInterface $configResolver;
+    private LoggerInterface $logger;
 
     public function __construct(
-        private readonly Repository $repository,
-        private readonly LoadService $loadService,
-        private readonly RouterInterface $router,
-        private readonly ConfigResolverInterface $configResolver,
-        private readonly LoggerInterface $logger = new NullLogger(),
-    ) {}
+        Repository $repository,
+        LoadService $loadService,
+        RouterInterface $router,
+        ConfigResolverInterface $configResolver,
+        LoggerInterface $logger = null
+    ) {
+
+         $this->repository = $repository;
+         $this->loadService = $loadService;
+         $this->router = $router;
+         $this->configResolver = $configResolver;
+         $this->logger = $logger ?? new NullLogger();
+    }
 
     public function convert(DOMDocument $xmlDoc): DOMDocument
     {
@@ -67,7 +79,7 @@ final class Link implements Converter
 
                     $downloadLink = $this->getDownloadLink($content);
                     $hrefResolved = $downloadLink ?? $hrefResolved;
-                } catch (APINotFoundException) {
+                } catch (APINotFoundException $e) {
                     $this->logger->error(
                         sprintf('While generating link for RichText, could not find Content #%s', $id),
                     );
@@ -83,7 +95,7 @@ final class Link implements Converter
                     $content = $location->content;
                     $downloadLink = $this->getDownloadLink($content);
                     $hrefResolved = $downloadLink ?? $hrefResolved;
-                } catch (APINotFoundException) {
+                } catch (APINotFoundException $e) {
                     $this->logger->error(
                         sprintf('While generating link for RichText, could not find Location #%s', $id),
                     );
@@ -141,7 +153,7 @@ final class Link implements Converter
         );
     }
 
-    private function generateUrlAliasForContentOrLocation(Content|Location $object, string $fragment): string
+    private function generateUrlAliasForContentOrLocation($object, string $fragment): string
     {
         $urlAlias = $this->router->generate(
             RouteObjectInterface::OBJECT_BASED_ROUTE_NAME,

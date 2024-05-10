@@ -19,7 +19,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use function in_array;
 use function sprintf;
-use function str_starts_with;
 
 final class MenuItemExtension implements ExtensionInterface
 {
@@ -93,7 +92,8 @@ final class MenuItemExtension implements ExtensionInterface
     {
         $uri = $urlValue->link ?? '';
 
-        if (!str_starts_with($uri, 'http')) {
+        //php7 compatibility fix - use strpos() to replace str_starts_with()
+        if (strpos($uri, 'http') !== 0) {
             $request = $this->requestStack->getMainRequest();
             if (!$request instanceof Request) {
                 return;

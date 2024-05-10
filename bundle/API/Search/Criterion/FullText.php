@@ -9,7 +9,6 @@ use Netgen\IbexaSearchExtra\API\Values\Content\Query\Criterion\FulltextSpellchec
 use Netgen\IbexaSearchExtra\API\Values\Content\SpellcheckQuery;
 use RuntimeException;
 
-use function get_debug_type;
 use function is_string;
 use function sprintf;
 
@@ -22,7 +21,9 @@ final class FullText extends BaseFullText implements FulltextSpellcheck
     {
         if (!is_string($this->value)) {
             throw new RuntimeException(
-                sprintf('FullText criterion value should be a string, %s given', get_debug_type($this->value)),
+                //php7 compatibility fix - use get_type() to replace get_debug_type()
+                //get_type() is not same to get_debug_type(), but it is what php7 had.
+                sprintf('FullText criterion value should be a string, %s given', get_type($this->value)),
             );
         }
 

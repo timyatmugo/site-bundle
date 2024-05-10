@@ -15,8 +15,6 @@ use function mb_substr;
 use function ob_get_clean;
 use function ob_start;
 use function preg_replace;
-use function str_contains;
-use function str_ends_with;
 use function trim;
 
 /**
@@ -41,12 +39,16 @@ class DebugTemplate extends Template
         $templateResult = (string) ob_get_clean();
 
         $templateName = trim($this->fileSystem->makePathRelative($this->getSourceContext()->getPath(), dirname((string) getcwd())), '/');
-        $isHtmlTemplate = str_ends_with($templateName, 'html.twig');
+        //php7 compatibility fix - use substr() to replace str_ends_with() which only support in PHP8
+        $needle = 'html.twig';
+        $lenth = strlen($needle);
+        $isHtmlTemplate = substr($templateName, -$lenth) === $needle;
         $templateName = $isHtmlTemplate ? $templateName . ' (' . $this->getSourceContext()->getName() . ')' : $templateName;
 
         // Display start template comment, if applicable.
         if ($isHtmlTemplate) {
-            if (str_contains(trim($templateResult), '<!doctype')) {
+            //php7 compatibility fix - use strpos() to replace str_contains()
+            if (strpos(trim($templateResult), '<!doctype') !== false) {
                 $templateResult = (string) preg_replace(
                     '#(<!doctype[^>]+>)#im',
                     "$1\n<!-- START " . $templateName . ' -->',
@@ -59,7 +61,8 @@ class DebugTemplate extends Template
 
         // Display stop template comment after result, if applicable.
         if ($isHtmlTemplate) {
-            if (str_contains($templateResult, '</body>')) {
+            //php7 compatibility fix - use strpos() to replace str_contains()
+            if (strpos($templateResult, '</body>') !== false) {
                 $bodyPos = (int) mb_stripos($templateResult, '</body>');
                 // Add layout template name before </body>, to avoid display quirks in some browsers.
                 echo mb_substr($templateResult, 0, $bodyPos)
