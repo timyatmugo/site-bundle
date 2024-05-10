@@ -3,3 +3,4 @@
 composer.lock
 studio.json
 vendor/
+.idea
