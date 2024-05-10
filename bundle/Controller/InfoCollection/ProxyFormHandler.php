@@ -70,7 +70,7 @@ final class ProxyFormHandler extends Controller
         $refererLocationId = null;
 
         if ($view->hasParameter('refererLocationId')) {
-            $refererLocationId = $view->getParameter('refererLocationId');
+            $refererLocationId = (int) $view->getParameter('refererLocationId');
         }
 
         $view->addParameters(
